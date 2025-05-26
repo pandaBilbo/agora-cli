@@ -111,9 +111,17 @@ install_devex() {
     # 检查权限并安装
     if [ -w "$INSTALL_DIR" ]; then
         cp "$BINARY_PATH" "$INSTALL_DIR/$BINARY_NAME"
+        # 复制template目录到二进制文件同级目录
+        if [ -d "${BINARY_NAME}-${OS}-${ARCH}/template" ]; then
+            cp -r "${BINARY_NAME}-${OS}-${ARCH}/template" "$INSTALL_DIR/"
+        fi
     else
         print_yellow "需要管理员权限安装到 $INSTALL_DIR"
         sudo cp "$BINARY_PATH" "$INSTALL_DIR/$BINARY_NAME"
+        # 复制template目录到二进制文件同级目录
+        if [ -d "${BINARY_NAME}-${OS}-${ARCH}/template" ]; then
+            sudo cp -r "${BINARY_NAME}-${OS}-${ARCH}/template" "$INSTALL_DIR/"
+        fi
     fi
     
     # 设置可执行权限
