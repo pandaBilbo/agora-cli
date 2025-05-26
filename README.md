@@ -52,6 +52,7 @@ devex init --help
 ## 功能特性
 
 - ✅ **一键安装** - 支持macOS、Linux、Windows
+- ✅ **自动依赖管理** - 自动检测并安装pre-commit和gitleaks
 - ✅ **代码质量检查** - pre-commit钩子自动检查代码风格
 - ✅ **敏感信息保护** - 集成gitleaks防止密钥泄露
 - ✅ **提交信息规范** - 防止提交信息包含中文字符
@@ -78,15 +79,17 @@ sudo cp -r devex-linux-amd64/template /usr/local/bin/
 
 ### Git钩子安装失败
 
-确保已安装依赖：
+DevEx CLI会自动检测并安装所需依赖。如果自动安装失败，可以手动安装：
 
 ```bash
-# 安装pre-commit
+# 手动安装pre-commit（通常自动安装）
 pip install pre-commit
 
-# macOS安装gitleaks
+# 手动安装gitleaks（macOS会自动通过Homebrew安装）
 brew install gitleaks
 ```
+
+**注意**：大多数情况下不需要手动安装，工具会自动处理依赖。
 
 ## 支持
 
