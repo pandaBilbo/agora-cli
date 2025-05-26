@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # DevEx CLI 安装脚本
+# 从私有仓库 pandaBilbo/agora-cli 的公开发布安装
 set -e
 
 # 默认值
-REPO="qinhui/agora-cli"  # 请替换为您的实际仓库
+REPO="pandaBilbo/agora-cli"  # 请替换为您的实际仓库
 INSTALL_DIR="/usr/local/bin"
 BINARY_NAME="devex"
 
