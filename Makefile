@@ -33,6 +33,7 @@ build-all: clean
 		echo "构建 $$os/$$arch..."; \
 		GOOS=$$os GOARCH=$$arch go build $(LDFLAGS) -o dist/$(APP_NAME)-$$os-$$arch/$$output_name main.go; \
 		if [ $$? -eq 0 ]; then \
+			cp -r template dist/$(APP_NAME)-$$os-$$arch/; \
 			cd dist && tar -czf $(APP_NAME)-$$os-$$arch.tar.gz $(APP_NAME)-$$os-$$arch && cd ..; \
 		fi; \
 	done

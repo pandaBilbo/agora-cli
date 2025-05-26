@@ -1,0 +1,29 @@
+name: ${PROJECT_NAME}
+options:
+  bundleIdPrefix: com.agora
+  deploymentTarget:
+    iOS: 13.0
+  xcodeVersion: 14.0
+targets:
+  ${PROJECT_NAME}:
+    type: application
+    platform: iOS
+    sources:
+      - path: ${PROJECT_NAME}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.agora.${PROJECT_NAME}
+        DEVELOPMENT_TEAM: "" # 需要设置开发者团队 ID
+    info:
+      path: ${PROJECT_NAME}/Info.plist
+      properties:
+        CFBundleDisplayName: ${PROJECT_NAME}
+        UILaunchStoryboardName: LaunchScreen
+        UIMainStoryboardFile: Main
+        LSRequiresIPhoneOS: true
+        UIRequiresFullScreen: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+    dependencies:
+      - sdk: UIKit.framework
+      - sdk: AVFoundation.framework 
