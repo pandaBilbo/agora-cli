@@ -91,7 +91,7 @@ func init() {
 	initCmd.Flags().StringVarP(&initRemote, "remote", "r", "", "远程仓库地址 (必需)")
 	initCmd.Flags().StringVarP(&initPath, "path", "p", ".", "项目路径")
 	// initCmd.Flags().BoolVar(&initNoGit, "no-git", false, "不初始化 Git 仓库")
-	// initCmd.Flags().BoolVar(&initNoCheck, "no-check", false, "不添加代码审查配置")
+	initCmd.Flags().BoolVar(&initNoCheck, "no-check", false, "不添加代码审查配置")
 
 	initCmd.MarkFlagRequired("remote")
 }

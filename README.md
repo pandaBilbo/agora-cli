@@ -1,10 +1,10 @@
 # DevEx CLI
 
-一个强大的开发者体验命令行工具。
+一个强大的开发者体验命令行工具，帮助你快速为项目添加代码审查和质量检查功能。
 
-## 安装
+## 快速安装
 
-### 一键安装脚本（推荐）
+### 一键安装（推荐）
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pandaBilbo/agora-cli/main/install.sh | bash
@@ -14,15 +14,15 @@ curl -fsSL https://raw.githubusercontent.com/pandaBilbo/agora-cli/main/install.s
 
 从 [Releases 页面](https://github.com/pandaBilbo/agora-cli/releases) 下载适合你系统的二进制文件。
 
-## 验证安装
+### 验证安装
 
 ```bash
 devex version
 ```
 
-## 使用
+## 使用方法
 
-### 为现有项目添加代码审查功能
+### 为现有项目添加代码质量检查
 
 ```bash
 # 在项目根目录执行
@@ -31,8 +31,8 @@ devex add
 
 这会为你的项目添加：
 - 代码风格检查配置
-- 敏感信息检查工具（gitleaks）
-- Git钩子自动检查
+- 敏感信息泄露检测
+- Git提交钩子
 - 代码审查模板
 
 ### 通过远程仓库初始化项目
@@ -41,38 +41,58 @@ devex add
 devex init --remote https://github.com/username/your-repo.git
 ```
 
+### 查看帮助
+
+```bash
+devex --help
+devex add --help
+devex init --help
+```
+
 ## 功能特性
 
-- ✅ **全局安装支持** - 支持通过安装脚本全局安装
-- ✅ **模板系统** - 内置多种项目模板
-- ✅ **代码审查** - 自动配置代码检查工具
-- ✅ **Git钩子** - 自动安装pre-commit钩子
-- ✅ **多平台支持** - 支持macOS、Linux、Windows
+- ✅ **一键安装** - 支持macOS、Linux、Windows
+- ✅ **代码质量检查** - pre-commit钩子自动检查代码风格
+- ✅ **敏感信息保护** - 集成gitleaks防止密钥泄露
+- ✅ **提交信息规范** - 防止提交信息包含中文字符
+- ✅ **模板系统** - 快速初始化项目配置
 
-## 开发
+## 故障排除
 
-### 本地构建
+### 安装失败
 
-```bash
-make build
-```
+如果安装脚本失败，请检查：
 
-### 构建所有平台
+1. 网络连接是否正常
+2. 是否有sudo权限（需要写入/usr/local/bin）
 
-```bash
-make build-all
-```
-
-### 发布新版本
+也可以手动下载并安装：
 
 ```bash
-# 1. 构建所有平台
-make build-all
-
-# 2. 创建标签并推送
-git tag v1.x.x
-git push origin v1.x.x
-
-# 3. 创建GitHub Release
-gh release create v1.x.x dist/*.tar.gz --title "DevEx CLI v1.x.x" --notes "发布说明"
+# Linux示例
+wget https://github.com/pandaBilbo/agora-cli/releases/latest/download/devex-linux-amd64.tar.gz
+tar -xzf devex-linux-amd64.tar.gz
+sudo cp devex-linux-amd64/devex /usr/local/bin/
+sudo cp -r devex-linux-amd64/template /usr/local/bin/
 ```
+
+### Git钩子安装失败
+
+确保已安装依赖：
+
+```bash
+# 安装pre-commit
+pip install pre-commit
+
+# macOS安装gitleaks
+brew install gitleaks
+```
+
+## 支持
+
+- 📝 [提交Issue](https://github.com/pandaBilbo/agora-cli/issues)
+- 💬 [讨论区](https://github.com/pandaBilbo/agora-cli/discussions)
+
+## 许可证
+
+MIT License
