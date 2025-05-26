@@ -12,11 +12,16 @@ type InitInitializer struct {
 
 // NewInitInitializer 创建项目初始化器
 func NewInitInitializer(projectName, projectPath string, noGit, noCheck bool, remote string) (*InitInitializer, error) {
+	globalConfigPath, err := getTemplatePath("global_config")
+	if err != nil {
+		return nil, fmt.Errorf("无法找到模板路径: %w", err)
+	}
+
 	return &InitInitializer{
 		BaseInitializer: BaseInitializer{
 			ProjectName:      projectName,
 			FilePath:         projectPath,
-			GlobalConfigPath: "template/global_config",
+			GlobalConfigPath: globalConfigPath,
 			ConfigPath:       "template/config",
 			TemplateCodePath: "template/code",
 			NoGit:            noGit,
