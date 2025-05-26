@@ -105,7 +105,6 @@ func (b *BaseInitializer) InstallGitHooks() error {
 		return nil
 	}
 
-	fmt.Println("b.FilePath :ddddd", b.FilePath)
 	fmt.Println("🔗 安装Git钩子...")
 
 	hookScript := filepath.Join(b.FilePath, ".git-hooks", "install-hooks.sh")
@@ -116,7 +115,13 @@ func (b *BaseInitializer) InstallGitHooks() error {
 		return nil
 	}
 
-	cmd := exec.Command("bash", hookScript)
+	// 获取绝对路径
+	absHookScript, err := filepath.Abs(hookScript)
+	if err != nil {
+		return fmt.Errorf("获取脚本绝对路径失败: %w", err)
+	}
+
+	cmd := exec.Command("bash", absHookScript)
 	cmd.Dir = b.FilePath
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
